@@ -1,0 +1,175 @@
+namespace Fonctions
+{
+    internal class Program
+    {
+
+        public static int DemanderPremierNombre()
+        {
+            Console.WriteLine("Entrer un premier nombre : ");
+            int nombreA = int.Parse(Console.ReadLine());
+
+            return nombreA;
+        }
+        public static int DemanderDeuxiemeNombre()
+        {
+            Console.WriteLine("Entrer un deuxième nombre : "); 
+            int nombreB = int.Parse(Console.ReadLine());
+            return nombreB;
+        }
+
+        public static void DemanderOperation() 
+        {
+            int nombreA = DemanderPremierNombre();
+            int nombreB = DemanderDeuxiemeNombre();
+
+            Console.WriteLine("Quelle operation souhaitez-vous faire ? : "); 
+            string choixOperationStr = Console.ReadLine();
+
+            
+            string[] motsValides = {"add", "multiply", "divide", "modulo", "substract"}; 
+
+            for( int i = 0; i < motsValides.Length; i++)
+            {
+                
+                if (choixOperationStr == motsValides[0])
+                {
+                    AfficherResultatAddition(nombreA, nombreB);
+                    break;
+                }
+                if (choixOperationStr == motsValides[1])
+                {
+                    AfficherResultatMultiplication(nombreA, nombreB);
+                    break;
+                }
+                if (choixOperationStr == motsValides[2])
+                {
+                    AfficherResultatDivision(nombreA, nombreB);
+                    break;
+                }
+                if (choixOperationStr == motsValides[3])
+                {
+                    AfficherResultatModulo(nombreA, nombreB);
+                    break;
+                }
+                if (choixOperationStr == motsValides[4])
+                {
+                    AfficherResultatSoustraction(nombreA, nombreB); 
+                    break; 
+                }
+                if (choixOperationStr != motsValides[i]) 
+                {
+                    AfficherErreurSaisieUtilisateur(choixOperationStr); 
+                }   
+
+            }            
+
+        }
+
+        public static void AfficherErreurSaisieUtilisateur(string motErreur) 
+        {
+
+            Console.WriteLine();
+            Console.WriteLine($"Erreur, vous avez saisi le mot {motErreur}... Veuillez saisir la bonne opération"); 
+            Console.WriteLine();  
+            DemanderOperation(); 
+            Console.WriteLine();
+
+        }
+
+        public static int Add(int nombreA, int nombreB)
+        {
+            int resultat;
+
+            resultat = nombreA + nombreB;
+            return resultat;
+        }
+
+        public static int Multiply(int nombreA, int nombreB)
+        {
+            int resultat;
+
+            resultat = nombreA * nombreB;
+            return resultat;
+
+        }
+
+        public static int Substract(int nombreA, int nombreB)
+        {
+            int resultat;
+
+            resultat = nombreA - nombreB;
+
+            return resultat;
+
+        }
+
+        public static int Divide(int nombreA, int nombreB)
+        {
+            int resultat;
+
+            resultat = nombreA / nombreB;
+            return resultat;
+
+        }
+
+        public static double Modulo(int nombreA, int nombreB)  
+        {
+
+            double resultatDivision = Divide(nombreA, nombreB);
+
+            return resultatDivision;   
+        }
+
+        public static void AfficherResultatAddition(int nombreA, int nombreB)
+        {
+            int resultatAddition = Add(nombreA, nombreB);
+            Console.WriteLine($"{nombreA} + {nombreB} = {resultatAddition}");
+            Console.WriteLine();
+
+        }
+        public static void AfficherResultatMultiplication(int nombreA, int nombreB)
+        {
+            int resultatMultiplication = Multiply(nombreA, nombreB);
+            Console.WriteLine($"{nombreA} x {nombreB} = {resultatMultiplication}");
+            Console.WriteLine();
+
+        }
+        public static void AfficherResultatSoustraction(int nombreA, int nombreB)
+        {
+            int resultatSoustraction = Substract(nombreA, nombreB);
+            Console.WriteLine($"{nombreA} - {nombreB} = {resultatSoustraction}");
+            Console.WriteLine();
+
+        }
+        public static void AfficherResultatDivision(int nombreA, int nombreB)
+        {
+            double resultatDivision = Divide(nombreA, nombreB);
+            Console.WriteLine($"{nombreA} / {nombreB} = {resultatDivision}");
+            Console.WriteLine(); 
+
+        }
+
+        public static void AfficherResultatModulo(int nombreA, int nombreB) 
+        {
+            double resultatModulo = Modulo(nombreA, nombreB);
+            Console.WriteLine($"Modulo de cette division : {resultatModulo} ");
+            Console.WriteLine(); 
+        }  
+
+        public static void LancerCalculatrice()
+        {
+            DemanderOperation();
+        }
+                
+        static void Main(string[] args)  
+        {
+            bool continuer = true; 
+
+            while (continuer)
+            {
+                LancerCalculatrice();  
+            }  
+
+        }
+    }
+}
